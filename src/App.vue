@@ -1,28 +1,9 @@
 <template>
   <div>
-    <p>请选择你要购买的书籍</p>
-    <ul>
-      <li v-for="item in arr" :key="item.id">
-        {{ item.name }} <button @click="add(item.id)">买书</button>
-      </li>
-    </ul>
-    <table border="1" width="500" cellspacing="0">
-      <tr>
-        <th>序号</th>
-        <th>书名</th>
-        <th>单价</th>
-        <th>数量</th>
-        <th>合计</th>
-      </tr>
-      <tr v-for="item in arr" :key="item.id">
-        <th>{{ item.id }}</th>
-        <th>{{ item.name }}</th>
-        <th>{{ item.price }}</th>
-        <th>{{ item.count }}</th>
-        <th>{{ item.zj }}</th>
-      </tr>
-    </table>
-    <p>总价格为:{{ app }}</p>
+    <div v-for="item in arr" :key="item">
+      <input type="checkbox" v-model="newArr" :value="item" /> {{ item }}
+    </div>
+    求和：{{ sumarr }}
   </div>
 </template>
 
@@ -30,52 +11,17 @@
 export default {
   data() {
     return {
-      arr: [
-        {
-          id: 1,
-          name: '水浒传',
-          price: 107,
-          count: 0,
-          zj: 0,
-        },
-        {
-          id: 2,
-          name: '西游记',
-          price: 192,
-          count: 0,
-          zj: 0,
-        },
-        {
-          id: 3,
-          name: '三国演义',
-          price: 219,
-          count: 0,
-          zj: 0,
-        },
-        {
-          id: 4,
-          name: '红楼梦',
-          price: 178,
-          count: 0,
-          zj: 0,
-        },
-      ],
-      hj: 0,
+      arr: [9, 15, 19, 25, 29, 31, 48, 57, 62, 79, 87],
+      newArr: [],
     }
   },
-  methods: {
-    add(id) {
-      const index = this.arr.findIndex((ele) => id == ele.id)
-      this.arr[index].count++
-      this.arr[index].zj = this.arr[index].count * this.arr[index].price
-    },
-  },
+
   computed: {
-    app() {
-      return this.arr.reduce((sum, next) => {
-        return sum + next.count * next.price
-      }, 0)
+    sumarr() {
+      return this.newArr.reduce((sum, next) => (sum += next), 0)
     },
   },
 }
 </script>
+
+<style scoped></style>
