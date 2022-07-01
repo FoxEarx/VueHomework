@@ -22,7 +22,7 @@ export default {
     number(val, num) {
       const arr = val.split('')
       arr.splice(arr.length - num - 1, 1, '.')
-      const str = arr.join('')
+      const str = arr.join('') + '万'
       return str
     },
     timer(val, sy) {

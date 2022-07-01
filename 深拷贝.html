@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var obj = {}
+        var map = new Map()
+        const _completeDeepClone = (target, old) => {
+            // 补全代码
+            for (var k in old) {
+                if (old[k] instanceof Array) {
+                    target[k] = []
+                    _completeDeepClone(target[k], old[k])
+                } else if (old[k] instanceof Object) {
+                    target[k] = {}
+                    _completeDeepClone(target[k], old[k])
+                } else {
+                    target[k] = old[k]
+                }
+            }
+        }
+        console.log(map.__proto__);
+        _completeDeepClone(obj, map.__proto__)
+        console.log(obj);
+    </script>
+</body>
+
+</html>
