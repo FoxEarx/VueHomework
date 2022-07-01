@@ -22,7 +22,7 @@
         <th>{{ item.zj }}</th>
       </tr>
     </table>
-    <p>总价格为:{{ hj }}</p>
+    <p>总价格为:{{ app }}</p>
   </div>
 </template>
 
@@ -66,9 +66,15 @@ export default {
   methods: {
     add(id) {
       const index = this.arr.findIndex((ele) => id == ele.id)
-      this.arr[index].count = this.arr[index].count + 1
+      this.arr[index].count++
       this.arr[index].zj = this.arr[index].count * this.arr[index].price
-      this.hj = this.hj + this.arr[index].price
+    },
+  },
+  computed: {
+    app() {
+      return this.arr.reduce((sum, next) => {
+        return sum + next.count * next.price
+      }, 0)
     },
   },
 }

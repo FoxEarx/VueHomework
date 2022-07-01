@@ -2,11 +2,11 @@
   <div id="app">
     <div>
       <span>姓名:</span>
-      <input type="text" v-model.trim="name" />
+      <input type="text" v-model.trim="name" placeholder="请输入姓名" />
     </div>
     <div>
       <span>年龄:</span>
-      <input type="number" v-model="age" />
+      <input type="number" v-model="age" placeholder="请输入年龄" />
     </div>
     <div>
       <span>性别:</span>
@@ -49,7 +49,7 @@ export default {
       arr: [],
       name: '',
       age: '',
-      sex: '',
+      sex: '男',
       change: false,
     }
   },
