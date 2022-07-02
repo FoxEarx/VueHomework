@@ -12,11 +12,16 @@
     <script>
         var eg = {}
         const instancof = function (ele, type) {
-            if (eg.__proto__ === type.prototype) {
-                return true
-            } else {
-                return false
+            while (true) {
+                if (eg.__proto__ === type.prototype) {
+                    return true
+                }
+                if (ele.__proto__ === null) {
+                    return false
+                }
+                ele = ele.__proto__
             }
+
         }
         console.log(instancof(eg, Array));
     </script>
