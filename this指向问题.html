@@ -16,18 +16,19 @@
         const obj = {
             name: "test",
             a() {
-                console.log(this.a);
-                setTimeout(function () {
-                    console.log(this.a);
-                }, 1000);
+                // console.log(this.a); //this指向obj
+                // setTimeout(function () {
+                //     console.log(this.a); //this指向window
+                // }, 1000);
             },
             b() {
-                console.log(this);
-                fn();
+                // console.log(this); //this指向obj
+                fn();//this指向window
             },
         };
         obj.a();
-        obj.b();
+        obj.b().fn;
+
     </script>
 </body>
 
