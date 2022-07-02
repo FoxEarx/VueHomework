@@ -22,7 +22,7 @@
                 arr: [],
             }
         }
-        const _completeDeepClone = (target, old) => {
+        const _completeDeepClone = (target, old = new Map()) => {
             // 补全代码
             for (var k in old) {
                 if (old[k] instanceof Array) {
