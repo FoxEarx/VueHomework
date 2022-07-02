@@ -11,7 +11,17 @@
 <body>
     <script type="text/javascript">
         var obj = {}
-        var map = new Map()
+        var map = {
+            id: 100,
+            name: '陈廉',
+            color: ['red', 'green', [1, 2], {
+                sex: 'male'
+            }],
+            msg: {
+                sex: '男',
+                arr: [],
+            }
+        }
         const _completeDeepClone = (target, old) => {
             // 补全代码
             for (var k in old) {
@@ -26,8 +36,8 @@
                 }
             }
         }
-        console.log(map.__proto__);
-        _completeDeepClone(obj, map.__proto__)
+        console.log(map);
+        _completeDeepClone(obj, map)
         console.log(obj);
     </script>
 </body>
