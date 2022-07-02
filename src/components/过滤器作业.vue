@@ -21,7 +21,7 @@ export default {
   filters: {
     number(val, num) {
       const arr = val.split('')
-      arr.splice(arr.length - num - 1, 1, '.')
+      arr.splice(arr.length - num, 0, '.')
       const str = arr.join('')
       return str
     },
