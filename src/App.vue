@@ -1,28 +1,51 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="bx">
+    <bookHeader @addBook="addBookFn"></bookHeader>
+    <bookMain :obj="getbook"></bookMain>
+    <bookFooter @findbook="findbookFn"></bookFooter>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import bookMain from './components/bookMain'
+import bookFooter from './components/bookFooter'
+import bookHeader from './components/bookHeader.vue'
 export default {
-  name: 'App',
+  methods: {
+    findbookFn(val) {
+      this.getbook = val
+      console.log(this.getbook)
+    },
+    addBookFn(val) {
+      this.getbook = val.data.data
+    },
+  },
+  created() {
+    this.$axios({
+      url: '/api/getbooks',
+      method: 'GET',
+    }).then((res) => {
+      this.getbook = res.data.data
+      console.log(res)
+      console.log(this.getbook)
+    })
+  },
+  data() {
+    return {
+      getbook: null,
+    }
+  },
   components: {
-    HelloWorld
-  }
+    bookMain,
+    bookFooter,
+    bookHeader,
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.bx {
+  width: 1240px;
+  margin: 0 auto;
 }
 </style>
