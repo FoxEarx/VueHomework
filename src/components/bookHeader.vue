@@ -22,7 +22,12 @@
       placeholder="出版社"
       v-model="publisher"
     />
-    <button type="button" class="btn btn-primary" @click="addBookFn">
+    <button
+      type="button"
+      class="btn btn-primary"
+      @click="addBookFn"
+      :disabled="disabled"
+    >
       添加
     </button>
   </div>
@@ -32,6 +37,7 @@
 export default {
   data() {
     return {
+      disabled: false,
       bookname: '',
       author: '',
       publisher: '',
@@ -39,6 +45,7 @@ export default {
   },
   methods: {
     addBookFn() {
+      this.disabled = true
       this.$axios({
         method: 'POST',
         url: '/api/addbook',
@@ -49,6 +56,7 @@ export default {
         },
       }).then((res) => {
         if (res.data.status !== 201) {
+          this.disabled = false
           return alert(res.data.msg)
         } else {
           this.$axios({
@@ -57,6 +65,7 @@ export default {
           }).then((res) => {
             this.$emit('addBook', res)
           })
+          this.disabled = false
           return alert(res.data.msg)
         }
       })

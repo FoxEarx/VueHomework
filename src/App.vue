@@ -1,7 +1,7 @@
 <template>
   <div class="bx">
     <bookHeader @addBook="addBookFn"></bookHeader>
-    <bookMain :obj="getbook"></bookMain>
+    <bookMain :obj="getbook" @del="delBookFn"></bookMain>
     <bookFooter @findbook="findbookFn"></bookFooter>
   </div>
 </template>
@@ -12,6 +12,14 @@ import bookFooter from './components/bookFooter'
 import bookHeader from './components/bookHeader.vue'
 export default {
   methods: {
+    delBookFn() {
+      this.$axios({
+        url: '/api/getbooks',
+        method: 'GET',
+      }).then((res) => {
+        this.getbook = res.data.data
+      })
+    },
     findbookFn(val) {
       this.getbook = val
       console.log(this.getbook)
