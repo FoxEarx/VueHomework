@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table>
+    <table border="1">
       <thead>
         <th>
           <td>序号</td>
@@ -14,7 +14,7 @@
           <slot name="id">{{item.id}}</slot>
           <slot name="name">{{item.name}}</slot>
           <slot name="age">{{item.age}}</slot>
-          <slot name="img" v-if="item.type==0"><a :href="item.headImgUrl"></a></slot>
+          <slot name="img" :row="item"><a href="item.headImgUrl">{{item.headImgUrl}}</a></slot>
          
         </tr>
       </tbody>
@@ -34,5 +34,4 @@ props:{
 </script>
 
 <style>
-
 </style>

@@ -4,7 +4,17 @@
       <template v-slot:id></template>
       <template v-slot:name></template>
       <template v-slot:age></template>
-      <template v-slot:img></template>
+      <template v-slot:img="scope">
+        <div v-if="scope.row.type == 0">
+          <a :href="scope.row.headImgUrl">{{ scope.row.headImgUrl }}</a>
+        </div>
+        <div v-if="scope.row.type == 1">
+          <img :src="scope.row.headImgUrl" alt="" />
+        </div>
+        <div v-if="scope.row.type == 2">
+          <h1>这是一张图片</h1>
+        </div>
+      </template>
     </Listzdy>
   </div>
 </template>
