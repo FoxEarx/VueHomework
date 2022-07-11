@@ -10,7 +10,7 @@
     </van-grid>
     <!-- ---------------------------------------------------------------- -->
     <van-cell class="title" title="最佳匹配" />
-    <van-cell
+    <!-- <van-cell
       v-for="item in newsongList"
       :key="item.id"
       :label="`${item.song.artists[0].name}-${item.name}`"
@@ -19,13 +19,24 @@
       <template>
         <van-icon color="#000" name="play-circle-o" size="28" />
       </template>
-    </van-cell>
+    </van-cell> -->
+    <SongItem
+      v-for="item in newsongList"
+      :key="item.id"
+      :name="item.name"
+      :id="item.id"
+      :author="item.song.artists[0].name"
+    ></SongItem>
   </div>
 </template>
 
 <script>
 import { getRecommendListApi, getNewSongListApi } from '@/apis/index'
+import SongItem from '@/components/SongItem'
 export default {
+  components: {
+    SongItem,
+  },
   data() {
     return {
       list: [],
